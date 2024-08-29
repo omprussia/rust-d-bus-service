@@ -1,0 +1,9 @@
+[package]
+name = "rusty_d_bus"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dbus = "0.9"
+dbus-crossroads = "0.5"
+anyhow = "1.0.86"
