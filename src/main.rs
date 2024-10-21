@@ -49,8 +49,8 @@ fn handle_client_message(builder: &mut IfaceBuilder<()>) {
                     return Ok((DBUS_METHOD_RETURN_SUCCESS.to_string(),));
                 },
                 Err(err) =>  {
-                    let error : String = "Error during data processing: ".to_string() + &err.to_string();
-                    println!("{error}");
+                    let error : String = format!("Error during data processing: {}", err);
+                    eprintln!("{}", error);
                     return Err((DBUS_METHOD_RETURN_FAIL,error).into());
                 }
             }
@@ -59,8 +59,7 @@ fn handle_client_message(builder: &mut IfaceBuilder<()>) {
 }
 
 fn do_some_data_processing(data: String)  -> Result<String> {
-    let processed_data : String = "processed: ".to_string() + &data;
-    return Ok(processed_data);
+    return Ok(format!("processed: {}", data));
 }
 
 fn send_processed_data(processed_data: String, ctx: &mut Context) {
